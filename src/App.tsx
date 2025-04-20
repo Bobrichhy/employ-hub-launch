@@ -12,6 +12,12 @@ import EmployerDashboard from "./pages/employer/EmployerDashboard";
 import EmployeeDashboard from "./pages/employee/EmployeeDashboard";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import NotFound from "./pages/NotFound";
+import Jobs from "./pages/employer/Jobs";
+import PostJob from "./pages/employer/PostJob";
+import EditJob from "./pages/employer/EditJob";
+import JobApplicants from "./pages/employer/JobApplicants";
+import AllApplicants from "./pages/employer/AllApplicants";
+import EmployerSettings from "./pages/employer/EmployerSettings";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +36,12 @@ const App = () => (
           
           {/* Employer Routes */}
           <Route path="/employer/dashboard" element={<EmployerDashboard />} />
+          <Route path="/employer/jobs" element={<Jobs />} />
+          <Route path="/employer/post-job" element={<PostJob />} />
+          <Route path="/employer/jobs/:jobId/edit" element={<EditJob />} />
+          <Route path="/employer/jobs/:jobId/applicants" element={<JobApplicants />} />
+          <Route path="/employer/applicants" element={<AllApplicants />} />
+          <Route path="/employer/settings" element={<EmployerSettings />} />
           
           {/* Employee Routes */}
           <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
