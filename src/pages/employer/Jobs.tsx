@@ -1,9 +1,14 @@
-
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { mockEmployers } from "@/data/mockUsers";
 import { mockJobs } from "@/data/mockJobs";
+
+const statusColors: Record<string, string> = {
+  "Open": "bg-green-100 text-green-700",
+  "Closed": "bg-red-100 text-red-700",
+  "Paused": "bg-yellow-100 text-yellow-700",
+};
 
 const Jobs = () => {
   // Simulate fetching the current employer and their jobs
@@ -31,7 +36,16 @@ const Jobs = () => {
                 <Link to={`/jobs/${job.id}`}>
                   <span className="font-medium hover:text-brand-blue">{job.title}</span>
                 </Link>
-                <div className="text-sm text-muted-foreground">{job.location} • {job.type}</div>
+                <div className="flex items-center gap-3 text-sm text-muted-foreground">
+                  <span>{job.location}</span>
+                  <span>•</span>
+                  <span>{job.type}</span>
+                  {job.status && (
+                    <span className={`ml-3 px-2 py-1 rounded text-xs font-semibold ${statusColors[job.status] || "bg-gray-200 text-gray-700"}`}>
+                      {job.status}
+                    </span>
+                  )}
+                </div>
               </div>
               <div className="flex gap-2">
                 <Button variant="outline" size="sm" asChild>
