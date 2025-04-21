@@ -2,34 +2,48 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useTheme } from "@/hooks/useTheme";
+import { Sun, Moon } from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [theme, toggleTheme] = useTheme();
 
   return (
-    <nav className="border-b bg-white sticky top-0 z-50">
+    <nav className="border-b bg-white dark:bg-sidebar sticky top-0 z-50 transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex">
             <Link to="/" className="flex-shrink-0 flex items-center">
-              <span className="text-brand-blue font-bold text-2xl">EmployHub</span>
+              <span className="text-brand-blue font-bold text-2xl dark:text-white transition-colors">EmployHub</span>
             </Link>
             <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
               <Link
                 to="/jobs"
-                className="border-transparent text-gray-500 hover:border-brand-purple hover:text-brand-purple inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                className="border-transparent text-gray-500 hover:border-brand-purple hover:text-brand-purple inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium dark:text-gray-200"
               >
                 Find Jobs
               </Link>
               <Link
                 to="/employers"
-                className="border-transparent text-gray-500 hover:border-brand-purple hover:text-brand-purple inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
+                className="border-transparent text-gray-500 hover:border-brand-purple hover:text-brand-purple inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium dark:text-gray-200"
               >
                 For Employers
               </Link>
             </div>
           </div>
-          <div className="hidden sm:ml-6 sm:flex sm:items-center sm:space-x-4">
+          <div className="hidden sm:ml-6 sm:flex sm:items-center sm:space-x-2">
+            <button
+              aria-label="Toggle theme"
+              className="mr-2 bg-transparent p-2 rounded hover:bg-muted transition-colors dark:hover:bg-gray-800"
+              onClick={() => toggleTheme()}
+            >
+              {theme === "dark" ? (
+                <Sun size={22} className="text-yellow-400" />
+              ) : (
+                <Moon size={22} className="text-gray-700" />
+              )}
+            </button>
             <Link to="/login">
               <Button variant="outline">Log in</Button>
             </Link>
@@ -83,19 +97,30 @@ const Navbar = () => {
         <div className="pt-2 pb-3 space-y-1">
           <Link
             to="/jobs"
-            className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+            className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium dark:text-gray-200"
           >
             Find Jobs
           </Link>
           <Link
             to="/employers"
-            className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
+            className="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium dark:text-gray-200"
           >
             For Employers
           </Link>
         </div>
-        <div className="pt-4 pb-3 border-t border-gray-200">
+        <div className="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700">
           <div className="flex items-center px-4 space-x-3">
+            <button
+              aria-label="Toggle theme"
+              className="mr-2 bg-transparent p-2 rounded hover:bg-muted transition-colors dark:hover:bg-gray-800"
+              onClick={() => toggleTheme()}
+            >
+              {theme === "dark" ? (
+                <Sun size={22} className="text-yellow-400" />
+              ) : (
+                <Moon size={22} className="text-gray-700" />
+              )}
+            </button>
             <Link to="/login" className="block w-full">
               <Button variant="outline" className="w-full">Log in</Button>
             </Link>
